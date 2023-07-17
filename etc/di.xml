@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<type name="Magento\Payment\Helper\Data">
-		<plugin name="Speedupmate_VirtualPaymentsPoc_Plugin_Magento_Payment_Helper_Data" type="Speedupmate\VirtualPaymentsPoc\Plugin\Magento\Payment\Helper\Data" sortOrder="10" disabled="false"/>
-	</type>
+    <!-- register a payment method with virtual payment methods with the VirtualPaymentMethodsManager -->
+    <type name="\Hyva\Checkout\Model\VirtualPaymentMethodsManager">
+        <arguments>
+            <argument name="virtualPaymentMethodAdapters" xsi:type="array">
+                <item name="virtualoptions" xsi:type="object">\Speedupmate\VirtualPaymentsPoc\Model\HyvaCheckoutVirtualPaymentMethod</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

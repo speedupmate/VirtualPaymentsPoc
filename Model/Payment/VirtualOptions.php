@@ -25,7 +25,6 @@ class VirtualOptions extends \Magento\Payment\Model\Method\AbstractMethod
 
     public function getCode()
     {
-
         $code = parent::getCode();
 
         if($this->getVirtualCode()){
@@ -37,16 +36,16 @@ class VirtualOptions extends \Magento\Payment\Model\Method\AbstractMethod
 
     public function isActive($storeId = null) {
         $active = parent::isActive($storeId);
-
         if($this->getVirtualCode()){
             $active = true;
         }
-
         return $active;
     }
 
     public function getTitle() {
-        return 'title for: ' . $this->getCode();
+        //@TODO this method is hard to separate to \Hyva\Checkout\Model\VirtualPaymentMethodInterface
+        //it is implemented differently in adapter (trough valuehandlers) and legacy methods (seeks config value)
+        return 'title for: ' . $this->getVirtualCode();
     }
 }
 
