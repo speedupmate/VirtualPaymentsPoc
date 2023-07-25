@@ -14,15 +14,26 @@ class HyvaCheckoutVirtualPaymentMethod implements \Hyva\Checkout\Model\VirtualPa
      */
     public function getVirtualPaymentMethods(): array
     {
-        return ['virt1'=>['title'=>'title for virt1'],'virt2'=>[],'virt3'=>[]];
+        return [
+                    'virt1' => ['title'=>'title for virt1'],
+                    'virt2' => ['title'=>'title for virt3'],
+                    'virt3' => ['title'=>'title for virt3']
+                ];
     }
 
     /**
-     * @param $methodInstance
-     * @param string $qualifier
+     * @param string $key
+     * @param string $paymentMethod
+     * @param string $virtualMethod
+     * @return array
      */
-    public function setPaymentData($methodInstance, string $qualifier): void
+    public function getVirtualPaymentData(string $key, string $paymentMethod, string $virtualMethod): array
     {
-        //@TODO not sure if we can set this data without it seeking the same data from config values
+        $virtualMethods = $this->getVirtualPaymentMethods();
+
+        if (isset($virtualMethods[$virtualMethod][$key])) {
+            return [$virtualMethods[$virtualMethod][$key]];
+        }
+        return [];
     }
 }

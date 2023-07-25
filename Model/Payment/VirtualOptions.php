@@ -42,10 +42,6 @@ class VirtualOptions extends \Magento\Payment\Model\Method\AbstractMethod
         return $active;
     }
 
-    public function getTitle() {
-        //@TODO this method is hard to separate to \Hyva\Checkout\Model\VirtualPaymentMethodInterface
-        //it is implemented differently in adapter (trough valuehandlers) and legacy methods (seeks config value)
-        return 'title for: ' . $this->getVirtualCode();
-    }
+
 }
 
